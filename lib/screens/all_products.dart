@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_store/components/appDrawer.dart';
 import 'package:my_store/components/badge_Item.dart';
 import 'package:my_store/components/product_grid.dart';
 import 'package:my_store/models/cart.dart';
@@ -71,6 +72,7 @@ class _AllProductsState extends State<AllProducts> {
         margin: EdgeInsets.only(top: 8),
         child: ProductGrid(showFavoriteOnly),
       ),
+      drawer: AppDrawer(),
     );
   }
 }
