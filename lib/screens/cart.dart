@@ -35,7 +35,7 @@ class CartScreen extends StatelessWidget {
                         vertical: 6,
                       ),
                       child: Text(
-                        "R\$ ${cart.totalAmount}",
+                        "R\$ ${cart.totalAmount.toStringAsFixed(2)}",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
