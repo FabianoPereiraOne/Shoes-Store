@@ -14,6 +14,10 @@ class ProductList with ChangeNotifier {
     notifyListeners();
   }
 
+  int get itemsCount {
+    return items.length;
+  }
+
   void removeProduct(int index) {
     _items.removeAt(index);
     notifyListeners();
