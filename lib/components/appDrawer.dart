@@ -15,7 +15,7 @@ class AppDrawer extends StatelessWidget {
             automaticallyImplyLeading: false,
           ),
           ListTile(
-            leading: Icon(Icons.store),
+            leading: Icon(Icons.store_outlined),
             title: Text("Loja"),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(AppRoutes.home);
@@ -23,7 +23,7 @@ class AppDrawer extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.payment),
+            leading: Icon(Icons.payment_outlined),
             title: Text("Pedidos"),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(AppRoutes.orders);
