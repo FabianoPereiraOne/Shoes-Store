@@ -25,6 +25,31 @@ class CartLine extends StatelessWidget {
         color: Theme.of(context).colorScheme.error,
         child: Icon(Icons.delete, color: Colors.white, size: 40),
       ),
+      confirmDismiss: (_) {
+        return showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              title: Text("Tem certeza?"),
+              content: Text("Deseja realmente remover o item do carrinho?"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop(false);
+                  },
+                  child: Text("Não"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop(true);
+                  },
+                  child: Text("Sim"),
+                ),
+              ],
+            );
+          },
+        );
+      },
       onDismissed: (_) {
         cart.removeItem(cartItem.productId);
       },
