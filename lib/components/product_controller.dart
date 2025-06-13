@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_store/models/product.dart';
+import 'package:my_store/models/product_list.dart';
 import 'package:my_store/utils/routes.dart';
+import 'package:provider/provider.dart';
 
 class ProductController extends StatelessWidget {
   final Product product;
@@ -23,7 +25,15 @@ class ProductController extends StatelessWidget {
               },
               icon: Icon(Icons.edit),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+            IconButton(
+              onPressed: () {
+                Provider.of<ProductList>(
+                  context,
+                  listen: false,
+                ).removeProduct(product);
+              },
+              icon: Icon(Icons.delete),
+            ),
           ],
         ),
       ),

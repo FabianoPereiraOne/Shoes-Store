@@ -47,9 +47,13 @@ class ProductList with ChangeNotifier {
     return items.length;
   }
 
-  void removeProduct(int index) {
-    _items.removeAt(index);
-    notifyListeners();
+  void removeProduct(Product product) {
+    int index = _items.indexWhere((prod) => prod.id == product.id);
+
+    if (index >= 0) {
+      _items.removeAt(index);
+      notifyListeners();
+    }
   }
 
   Product findById(String id) {
