@@ -51,12 +51,11 @@ class ProductDetail extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: Text(
-                        "R\$ ${product.description}",
+                        " ${product.description}",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
-                          color: Colors.grey,
                         ),
                       ),
                     ),

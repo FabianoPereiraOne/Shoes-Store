@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:my_store/data/database.dart';
 import 'package:my_store/models/product.dart';
@@ -8,6 +10,17 @@ class ProductList with ChangeNotifier {
   List<Product> get items => [..._items];
   List<Product> get favoriteItems =>
       _items.where((prod) => prod.isFavorite).toList();
+
+  void saveProduct(Map<String, Object> data) {
+    final newProduct = Product(
+      id: Random().nextDouble().toString(),
+      title: data['name'] as String,
+      description: data['description'] as String,
+      price: data['price'] as double,
+      imageUrl: data['imageUrl'] as String,
+    );
+    addProduct(newProduct);
+  }
 
   void addProduct(Product product) {
     _items.add(product);
