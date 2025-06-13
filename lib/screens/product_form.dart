@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_store/models/product.dart';
 import 'package:my_store/models/product_list.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,24 @@ class _ProductFormState extends State<ProductForm> {
   void initState() {
     super.initState();
     _imageUrlFocus.addListener(updateImage);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_formData.isEmpty) {
+      final arg = ModalRoute.of(context)?.settings.arguments;
+
+      if (arg != null) {
+        final product = arg as Product;
+        _formData['id'] = product.id;
+        _formData['name'] = product.title;
+        _formData['description'] = product.description;
+        _formData['price'] = product.price;
+        _formData['imageUrl'] = product.imageUrl;
+        _imageUrlController.text = product.imageUrl;
+      }
+    }
   }
 
   void updateImage() {
@@ -70,6 +89,7 @@ class _ProductFormState extends State<ProductForm> {
           child: ListView(
             children: [
               TextFormField(
+                initialValue: _formData['name']?.toString(),
                 decoration: InputDecoration(labelText: "Nome"),
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (_) {
@@ -87,6 +107,7 @@ class _ProductFormState extends State<ProductForm> {
                 },
               ),
               TextFormField(
+                initialValue: _formData['price']?.toString(),
                 focusNode: _priceFocus,
                 decoration: InputDecoration(labelText: "Preço"),
                 textInputAction: TextInputAction.next,
@@ -106,6 +127,7 @@ class _ProductFormState extends State<ProductForm> {
                 },
               ),
               TextFormField(
+                initialValue: _formData['description']?.toString(),
                 focusNode: _descriptionFocus,
                 decoration: InputDecoration(labelText: "Descrição"),
                 textInputAction: TextInputAction.next,

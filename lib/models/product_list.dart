@@ -12,14 +12,30 @@ class ProductList with ChangeNotifier {
       _items.where((prod) => prod.isFavorite).toList();
 
   void saveProduct(Map<String, Object> data) {
+    bool hasId = data['id'] != null;
+
     final newProduct = Product(
-      id: Random().nextDouble().toString(),
+      id: hasId ? data['id'] as String : Random().nextDouble().toString(),
       title: data['name'] as String,
       description: data['description'] as String,
       price: data['price'] as double,
       imageUrl: data['imageUrl'] as String,
     );
-    addProduct(newProduct);
+
+    if (hasId) {
+      updateProduct(newProduct);
+    } else {
+      addProduct(newProduct);
+    }
+  }
+
+  void updateProduct(Product product) {
+    int index = _items.indexWhere((prod) => prod.id == product.id);
+
+    if (index >= 0) {
+      _items[index] = product;
+      notifyListeners();
+    }
   }
 
   void addProduct(Product product) {

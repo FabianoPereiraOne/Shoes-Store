@@ -17,7 +17,9 @@ class ProductController extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.productsForm);
+                Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.productsForm, arguments: product);
               },
               icon: Icon(Icons.edit),
             ),
