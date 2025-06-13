@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:my_store/data/database.dart';
 import 'package:my_store/models/product.dart';
+import 'package:my_store/utils/api.dart';
 
 class ProductList with ChangeNotifier {
   final List<Product> _items = dummyProducts;
@@ -38,9 +41,35 @@ class ProductList with ChangeNotifier {
     }
   }
 
-  void addProduct(Product product) {
-    _items.add(product);
-    notifyListeners();
+  void addProduct(Product product) async {
+    try {
+      final result = await post(
+        Uri.parse('${apiUrl.baseUrl}/products.json'),
+        body: jsonEncode({
+          'name': product.title,
+          'description': product.description,
+          'price': product.price,
+          'imageUrl': product.imageUrl,
+          "isFavorite": product.isFavorite,
+        }),
+      );
+
+      final id = jsonDecode(result.body)['name'];
+
+      _items.add(
+        Product(
+          description: product.description,
+          id: id,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          title: product.title,
+          isFavorite: product.isFavorite,
+        ),
+      );
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
   }
 
   int get itemsCount {
