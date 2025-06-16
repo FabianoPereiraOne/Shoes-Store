@@ -6,9 +6,16 @@ class Product with ChangeNotifier {
   final String description;
   final double price;
   final String imageUrl;
+  final double rating;
+  final String store;
+  final double reviews;
+
   bool isFavorite;
 
   Product({
+    required this.rating,
+    required this.store,
+    required this.reviews,
     required this.id,
     required this.title,
     required this.description,

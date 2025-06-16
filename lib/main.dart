@@ -6,8 +6,6 @@ import 'package:my_store/screens/all_products.dart';
 import 'package:my_store/screens/cart.dart';
 import 'package:my_store/screens/orders.dart';
 import 'package:my_store/screens/product_detail.dart';
-import 'package:my_store/screens/product_form.dart';
-import 'package:my_store/screens/products_page.dart';
 import 'package:my_store/utils/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -30,13 +28,13 @@ class MyStore extends StatelessWidget {
         title: 'Minha Loja',
         theme: ThemeData(
           colorScheme: ColorScheme.light(
-            primary: const Color(0xFF800020),
-            onPrimary: const Color.fromARGB(255, 187, 2, 48),
-            secondary: const Color(0xFFFFAABF),
-            onSecondary: const Color.fromARGB(255, 234, 117, 146),
+            primary: const Color.fromARGB(255, 4, 108, 200),
+            onPrimary: const Color.fromARGB(255, 4, 108, 200),
+            secondary: const Color(0xFFF2B33D),
+            onSecondary: const Color(0xFFF2B33D),
           ),
           appBarTheme: AppBarTheme(
-            backgroundColor: const Color(0xFF800020),
+            backgroundColor: const Color.fromARGB(255, 4, 108, 200),
             foregroundColor: Colors.white,
           ),
           useMaterial3: true,
@@ -47,8 +45,6 @@ class MyStore extends StatelessWidget {
           AppRoutes.productDetail: (ctx) => ProductDetail(),
           AppRoutes.cart: (ctx) => CartScreen(),
           AppRoutes.orders: (ctx) => Orders(),
-          AppRoutes.products: (ctx) => ProductsPage(),
-          AppRoutes.productsForm: (ctx) => ProductForm(),
         },
         debugShowCheckedModeBanner: false,
       ),

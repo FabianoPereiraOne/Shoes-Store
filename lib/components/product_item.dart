@@ -5,6 +5,8 @@ import 'package:my_store/utils/routes.dart';
 import 'package:provider/provider.dart';
 
 class ProductItem extends StatelessWidget {
+  const ProductItem({super.key});
+
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
@@ -15,17 +17,6 @@ class ProductItem extends StatelessWidget {
       child: GridTile(
         footer: GridTileBar(
           backgroundColor: Colors.black87,
-          leading: Consumer<Product>(
-            builder: (ctx, product, _) => IconButton(
-              onPressed: () {
-                product.toggleFavorite();
-              },
-              icon: Icon(
-                product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-            ),
-          ),
           trailing: IconButton(
             onPressed: () {
               cart.addItem(product);
@@ -48,7 +39,7 @@ class ProductItem extends StatelessWidget {
               color: Theme.of(context).colorScheme.secondary,
             ),
           ),
-          title: Text(product.title, textAlign: TextAlign.center),
+          title: Text(product.title),
         ),
         child: GestureDetector(
           onTap: () {

@@ -47,10 +47,11 @@ class CartScreen extends StatelessWidget {
                   Spacer(),
                   TextButton(
                     onPressed: () {
-                      Provider.of<OrderList>(
+                      final order = Provider.of<OrderList>(
                         context,
                         listen: false,
-                      ).addOrder(cart);
+                      );
+                      order.addOrder(cart);
                       cart.clear();
                     },
                     child: Text("COMPRAR", style: TextStyle(fontSize: 16)),
