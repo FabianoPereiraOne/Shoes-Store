@@ -21,7 +21,7 @@ class ProductList with ChangeNotifier {
       imageUrl: data['imageUrl'] as String,
       rating: data['rating'] as double,
       store: data['store'] as String,
-      reviews: data['reviews'] as double,
+      reviews: data['reviews'] as int,
     );
 
     if (hasId) {

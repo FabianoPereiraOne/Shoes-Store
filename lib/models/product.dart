@@ -8,7 +8,7 @@ class Product with ChangeNotifier {
   final String imageUrl;
   final double rating;
   final String store;
-  final double reviews;
+  final int reviews;
 
   bool isFavorite;
 

@@ -1,4 +1,3 @@
 class apiUrl {
-  static const baseUrl =
-      "https://real-time-product-search.p.rapidapi.com/search-v2?q=shoes&country=br&language=pt-BR&page=1&limit=10&sort_by=BEST_MATCH";
+  static const baseUrl = "https://684f2de3f0c9c9848d2a4aff.mockapi.io/products";
 }

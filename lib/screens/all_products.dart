@@ -59,33 +59,13 @@ class _AllProductsState extends State<AllProducts> {
 
     try {
       final url = Uri.parse(apiUrl.baseUrl);
-
-      final response = await http.get(
-        url,
-        headers: {
-          'Content-Type': 'application/json',
-          'X-RapidAPI-Key':
-              '29c569ec54msh453d45c7ef9e62ap163e7ajsn11501d4160e1',
-          'X-RapidAPI-Host': 'real-time-product-search.p.rapidapi.com',
-        },
-      );
+      final response = await http.get(url);
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        final products = data['data']['products'] ?? [];
+        final products = data ?? [];
 
         for (final product in products) {
-          String rawPrice =
-              product['price'] ?? product['offer']?['price'] ?? "0.0";
-
-          String cleaned = rawPrice
-              .replaceAll("R\$", "")
-              .replaceAll(" ", "")
-              .replaceAll(".", "")
-              .replaceAll(",", ".");
-
-          double price = double.tryParse(cleaned) ?? 0.0;
-
           productList.addProduct(
             Product(
               id: product['product_id'] ?? "",
@@ -94,19 +74,14 @@ class _AllProductsState extends State<AllProducts> {
                   product['product_description'] ??
                   product['product_offer_page_url'] ??
                   "",
-              price: price,
+              price: product['price'].toDouble(),
               imageUrl:
                   product['product_photo'] ??
                   product['product_photos'][0] ??
                   "",
-              rating: (product['product_rating'] is int)
-                  ? (product['product_rating'] as int).toDouble()
-                  : (product['product_rating'] ?? 0.0),
-              store:
-                  product['store_name'] ?? product['offer']['store_name'] ?? "",
-              reviews: (product['product_num_reviews'] is int)
-                  ? (product['product_num_reviews'] as int).toDouble()
-                  : (product['product_num_reviews'] ?? 0.0),
+              rating: product['product_rating'].toDouble(),
+              store: product['store_name'] ?? "",
+              reviews: product['product_num_reviews'],
             ),
           );
         }
